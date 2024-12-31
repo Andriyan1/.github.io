@@ -1,11 +1,15 @@
-const express = require('express');
-const app = express();
-const port = process.env.PORT || 3000;
+app.get('/search', (req, res) => {
+  const query = req.query.q;
+  if (!query) {
+    return res.status(400).json({ error: 'Query parameter q is required' });
+  }
 
-app.get('/', (req, res) => {
-  res.send('Hello, world!');
-});
+  // Логіка для обробки запиту за query.q
+  const results = [
+    { name: 'Apple' },
+    { name: 'Orange' },
+    { name: 'Banana' }
+  ];
 
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+  res.json(results);
 });
